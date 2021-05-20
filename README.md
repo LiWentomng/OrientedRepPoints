@@ -1,2 +1,2 @@
 # OrientedRepPoints
-The code for “Oriented RepPoints for Aerail Object Detection”
+The code for “Oriented RepPoints for Aerial Object Detection”
