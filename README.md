@@ -37,8 +37,11 @@ The results on DOTA test set are shown in the table below. More detailed results
 # Visual results
 The visual results of learning points and the oriented bounding box.
 * Learning points
+
 ![Learning Points](https://user-images.githubusercontent.com/32033843/119213326-e44b7580-baf0-11eb-93a6-c86fcf80be58.png)
+
 * Oriented bounding box
+
 ![Oriented Box](https://user-images.githubusercontent.com/32033843/119213335-edd4dd80-baf0-11eb-86db-459fe2a14735.png)
 
 
