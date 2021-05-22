@@ -19,16 +19,21 @@ Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints
 
 # Citation
 
-
-
 # Results and Models
 The results on DOTA test set are shown in the table below. More detailed results please see paper.
 
   Model| Backbone  | MS | Rotate | mAP | mAOE | Download
  ----  | ----- | ------  | ------| ------ | ------  | ------ 
  OrientedReppoints| R-50| - | -| 75.68 | - |[model]()
- OrientedReppoints| R-101| √ | √ | 78.12 | - |[model]()
+ OrientedReppoints| R-101| √ | √ | 78.12 | 5.93 |[model]()
+ 
 
+ Note：
+ * Wtihout the grountruth of test subset, the mAOE in orientation is evaluated on the val subset(original official train subset for training).
+ * The orientation (angle) of an aerial object is define as below, the detail of mAOE, please see the paper. The code of mAOE is [here]().
+ ![微信截图_20210522135042](https://user-images.githubusercontent.com/32033843/119216186-be2fd080-bb04-11eb-9736-1f82c6666171.png)
+
+ 
 # Visual results
 The visual results of learning points and the oriented bounding box.
 * Learning points
