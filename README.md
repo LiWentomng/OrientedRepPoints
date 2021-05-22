@@ -10,7 +10,7 @@ Oriented RepPoints employs a set of adaptive points to capture the geometric and
 
 
 # Installation
-Please refer to ![install.md]() for installation and dataset preparation.
+Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/docs/INSTALL.md) for installation and dataset preparation.
 
 
 # Getting Started 
@@ -22,11 +22,11 @@ Please see ![getting_started.md]() for the basic usage of MMDetection.
 # Results and Models
 The results on DOTA test set are shown in the table below. More detailed results please see paper.
 
-# Visual results of output points and rbox
+# Visual results
 
 
-![](https://user-images.githubusercontent.com/32033843/119213326-e44b7580-baf0-11eb-93a6-c86fcf80be58.png)
-![](https://user-images.githubusercontent.com/32033843/119213335-edd4dd80-baf0-11eb-86db-459fe2a14735.png)
+![Learning Points](https://user-images.githubusercontent.com/32033843/119213326-e44b7580-baf0-11eb-93a6-c86fcf80be58.png)
+![Oriented Box](https://user-images.githubusercontent.com/32033843/119213335-edd4dd80-baf0-11eb-86db-459fe2a14735.png)
 
 
 
