@@ -10,11 +10,11 @@ Oriented RepPoints employs a set of adaptive points to capture the geometric and
 
 
 # Installation
-Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/docs/INSTALL.md) for installation and dataset preparation.
+Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/install.md) for installation and dataset preparation.
 
 
 # Getting Started 
-Please see ![getting_started.md]() for the basic usage of MMDetection.
+Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/getting_started.md) for the basic usage of MMDetection.
 
 
 # Citation
