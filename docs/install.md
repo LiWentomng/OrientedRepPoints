@@ -47,8 +47,45 @@ python setup.py build_ext --inplace
 ```
 
 ## Prepare dataset
-
-
+It is recommended to symlink the dataset root to $orientedreppoints/data. If your folder structure is different, you may need to change the corresponding paths in config files.
+```
+orientedreppoints
+|——mmdet
+|——tools
+|——configs
+|——data
+|  |——dota
+|  |  |——trainval_split
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——trainval.json
+|  |  |——test_split
+|  |  |  |——images
+|  |  |  |——test.json
+|  |——HRSC2016(OPTINAL)
+|  |  |——Train
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——train.txt
+|  |  |  |——trainval.json
+|  |  |——Test
+|  |  |  |——images
+|  |  |  |——test.txt
+|  |  |  |——test.json
+|  |——UCASAOD(OPTINAL)
+|  |  |——Train
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——train.txt
+|  |  |  |——trainval.json
+|  |  |——Test
+|  |  |  |——images
+|  |  |  |——test.txt
+|  |  |  |——test.json
+```
+Note:
+* `train.txt` and `test.txt` in HRSC2016 and UCASAOD are `.txt` files recording image names without extension.
+* Without the pre-divided `train`，`test`, and `val` sub-dataset, the partition of UCASAOD dataset follows the [rep](https://github.com/ming71/UCAS-AOD-benchmark).
 
 
 
