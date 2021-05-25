@@ -4,9 +4,7 @@
 
 """
     To use the code, users should to config detpath, annopath and imagesetfile
-    detpath is the path for 15 result files, for the format, you can refer to "http://captain.whu.edu.cn/DOTAweb/tasks.html"
-    search for PATH_TO_BE_CONFIGURED to config the paths
-    Note, the evaluation is on the large scale images
+    detpath is the path for class result files. The evaluation is performed on the merging results.
 """
 
 import numpy as np
@@ -177,10 +175,6 @@ def main():
     annopath = r'/mnt/SSD/lwt_workdir/data/dota_new/val/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
     imagesetfile = r'/mnt/SSD/lwt_workdir/data/dota_new/val/test.txt'
     
-    # For DOTA-v1.5
-    # classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
-    #             'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter', 'container-crane']
-
     # For DOTA-v1.0
     classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                 'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter']
