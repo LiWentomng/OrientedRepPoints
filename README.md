@@ -20,13 +20,13 @@ Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints
 # Citation
 
 # Results and Models
-The results on DOTA test set are shown in the table below. More detailed results please see paper.
+The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see paper.
 
   Model| Backbone  | MS | Rotate | mAP | mAOE | Download
  ----  | ----- | ------  | ------| ------ | ------  | ------ 
  OrientedReppoints| R-50| - | -| 75.68 | - |[model](https://pan.baidu.com/s/1fCgmpd3MWoCbI80wYwtV2w)
  OrientedReppoints| R-101| √ | √ | 78.12 | 5.93 |[model](https://pan.baidu.com/s/1Rv2ujQEt56R9nw-QjJlMIg)
- 
+
 
  Note：
  * Wtihout the groun-truth of test subset, the mAOE of orientation evaluation is calculated on the val subset(original train subset for training).
