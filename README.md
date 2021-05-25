@@ -24,8 +24,8 @@ The results on DOTA test set are shown in the table below. More detailed results
 
   Model| Backbone  | MS | Rotate | mAP | mAOE | Download
  ----  | ----- | ------  | ------| ------ | ------  | ------ 
- OrientedReppoints| R-50| - | -| 75.68 | - |[model]()
- OrientedReppoints| R-101| √ | √ | 78.12 | 5.93 |[model]()
+ OrientedReppoints| R-50| - | -| 75.68 | - |[model](https://pan.baidu.com/s/1fCgmpd3MWoCbI80wYwtV2w)
+ OrientedReppoints| R-101| √ | √ | 78.12 | 5.93 |[model](https://pan.baidu.com/s/1Rv2ujQEt56R9nw-QjJlMIg)
  
 
  Note：
