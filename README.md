@@ -1,7 +1,7 @@
 # Oriented RepPoints for Aerial Object Detection
 ![图片](https://user-images.githubusercontent.com/32033843/119212550-b44da380-baeb-11eb-9de2-61ce0d812131.png)
 
-The code for the implementation of “Oriented RepPoints”. arXiv preprint().
+The code for the implementation of “Oriented RepPoints”. [arXiv preprint](https://arxiv.org/abs/2105.11111).
 
 This repo is based on ![mmdetection](https://github.com/open-mmlab/mmdetection).
 
