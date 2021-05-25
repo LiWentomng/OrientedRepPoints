@@ -41,8 +41,9 @@ python setup.py develop  #or "pip install -v -e ."
 
 ```
 sudo apt-get install swig
-cd DOTA_devkit/polyiou
-swig -c++ -python csrc/polyiou.i
+```
+```
+swig -c++ -python polyiou.i
 python setup.py build_ext --inplace
 ```
 
