@@ -23,16 +23,16 @@ Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints
 The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see paper.
 
   Model| Backbone  | MS | Rotate | mAP | Download
- ----  | ----- | ------  | ------| ------ | ------  | ------ 
+ ----  | ----- | ------  | ------| ------ | ------  
  OrientedReppoints| R-50| - | -| 75.68 |[model](https://pan.baidu.com/s/1fCgmpd3MWoCbI80wYwtV2w)
  OrientedReppoints| R-101| - | √| 76.21 |[model](https://pan.baidu.com/s/1WN2QKMR6vrTzrJGCcukt8A)
  OrientedReppoints| R-101| √ | √ | 78.12|[model](https://pan.baidu.com/s/1Rv2ujQEt56R9nw-QjJlMIg)
  
 
-The mAOE results on DOTA val set are shown in the table below
+The mAOE results on DOTA val set are shown in the table below(password:aabb).
   Model| Backbone | mAOE | Download
  ----  | ----- | ------  | ------
- OrientedReppoints| R-50| 5.93 | - |[model](https://pan.baidu.com/s/1TeHDeuVTKpXd5KdYY51TUA)
+ OrientedReppoints| R-50| 5.93° |[model](https://pan.baidu.com/s/1TeHDeuVTKpXd5KdYY51TUA)
 
 
  Note：
