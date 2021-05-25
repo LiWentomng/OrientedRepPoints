@@ -16,9 +16,6 @@ Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/bl
 # Getting Started 
 Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/getting_started.md) for the basic usage of MMDetection.
 
-
-# Citation
-
 # Results and Models
 The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see paper.
 
@@ -52,6 +49,17 @@ The visual results of learning points and the oriented bounding box.
 ![Oriented Box](https://user-images.githubusercontent.com/32033843/119213335-edd4dd80-baf0-11eb-86db-459fe2a14735.png)
 
 
+# Citation
+```shell
+@article{Li2021oriented,
+  title={Oriented RepPoints for Aerial Object Detection},
+  author={Wentong Li and Jianke Zhu},
+  journal={arXiv preprint arXiv:2105.11111},
+  year={2021}
+}
+```
+
+
 #  Acknowledgements
 We have used utility functions from other wonderful open-source projects, we would espeicially thank the authors of:
 
@@ -62,5 +70,7 @@ We have used utility functions from other wonderful open-source projects, we wou
 [AerialDetection](https://github.com/dingjiansw101/AerialDetection)
 
 [BeyoundBoundingBox](https://github.com/sdl-guozonghao/beyondboundingbox)
+
+
 
 
