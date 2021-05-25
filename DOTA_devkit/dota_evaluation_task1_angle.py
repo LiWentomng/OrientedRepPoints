@@ -1,7 +1,5 @@
 # --------------------------------------------------------
-# dota_evaluation_task1
-# Licensed under The MIT License [see LICENSE for details]
-# Written by Jian Ding, based on code from Bharath Hariharan
+# dota_mAOEevaluation_task1
 # --------------------------------------------------------
 
 """
@@ -193,7 +191,7 @@ def main():
              annopath,
              imagesetfile,
              classname,
-             ovthresh=0.7)
+             ovthresh=0.7) # set 0.7 as default
 
         angle_dif = 0.0
 
