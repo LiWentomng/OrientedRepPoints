@@ -20,7 +20,7 @@ python tools/test.py configs/dota/orientedrepoints_rotated_r50_demo.py \
 2. Test OrientedRepPoints with 4 GPUs.
 ```shell
 ./tools/dist_test.sh configs/dota/orientedrepoints_rotated_r50_demo.py \
-    work_dirs/orientedreppoint_r50_test/epoch_40.pth \ 
+    work_dirs/orientedreppoint_r50_test/epoch_40.pth 4 \ 
     --out work_dirs/orientedreppoint_r50_test/results.pkl
 ```
 
