@@ -30,7 +30,7 @@ The results on DOTA test set are shown in the table below. More detailed results
 
  Note：
  * Wtihout the groun-truth of test subset, the mAOE of orientation evaluation is calculated on the val subset(original train subset for training).
- * The orientation (angle) of an aerial object is define as below, the detail of mAOE, please see the paper. The code of mAOE is [here]().
+ * The orientation (angle) of an aerial object is define as below, the detail of mAOE, please see the paper. The code of mAOE is [](https://github.com/LiWentomng/OrientedRepPoints/blob/main/DOTA_devkit/dota_mAOE_evaluation_task1.py).
  ![微信截图_20210522135042](https://user-images.githubusercontent.com/32033843/119216186-be2fd080-bb04-11eb-9736-1f82c6666171.png)
 
  
