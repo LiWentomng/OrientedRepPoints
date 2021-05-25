@@ -5,8 +5,6 @@ from .assign_result import AssignResult
 from .base_assigner import BaseAssigner
 from mmdet.ops.iou import convex_iou
 from mmdet.ops.point_justify import pointsJf
-from mmdet.ops.minareabbox import find_minarea_rbbox
-
 
 class ATSSAssigner(BaseAssigner):
     """Assign a corresponding gt bbox or background to each bbox.
