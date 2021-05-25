@@ -1,5 +1,5 @@
 # --------------------------------------------------------
-# dota_mAOEevaluation_task1
+# mAOEevaluation
 # --------------------------------------------------------
 
 """
@@ -184,6 +184,13 @@ def main():
     # For DOTA-v1.0
     classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',
                 'basketball-court', 'storage-tank',  'soccer-ball-field', 'roundabout', 'harbor', 'swimming-pool', 'helicopter']
+    
+    # for hrsc2016
+    # classnames = ['ship']
+    
+    # for ucas_aod
+    # classname = ['airplane', 'car']
+    
     classaps = []
     for classname in classnames:
         print('classname:', classname)
