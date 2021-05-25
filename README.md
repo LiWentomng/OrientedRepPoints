@@ -47,8 +47,11 @@ The visual results of learning points and the oriented bounding box.
 
 #  Acknowledgements
 We have used utility functions from other wonderful open-source projects, we would espeicially thank the authors of:
+
 [MMdetection](https://github.com/open-mmlab/mmdetection)
+
 [DOTA_devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit)
+
 [BeyoundBoundingBox](https://github.com/sdl-guozonghao/beyondboundingbox)
 
 
