@@ -52,6 +52,8 @@ We have used utility functions from other wonderful open-source projects, we wou
 
 [DOTA_devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit)
 
+[AerialDetection](https://github.com/dingjiansw101/AerialDetection)
+
 [BeyoundBoundingBox](https://github.com/sdl-guozonghao/beyondboundingbox)
 
 
