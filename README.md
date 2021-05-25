@@ -17,7 +17,7 @@ Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/bl
 Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/getting_started.md) for the basic usage of MMDetection.
 
 # Results and Models
-The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see paper.
+The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see the paper.
 
   Model| Backbone  | MS | Rotate | mAP | Download
  ----  | ----- | ------  | ------| ------ | ------  
