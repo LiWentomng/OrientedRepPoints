@@ -420,11 +420,6 @@ class OrientedRepPointsHead(nn.Module):
                                            rbox_weights_list_refine, pos_inds_list_refine)
 
 
-            # quality_assess_list, = multi_apply(self.get_pos_loss, cls_scores,
-            #                                pts_coordinate_preds_init_image, labels_list,
-            #                                rbbox_gt_list_refine, label_weights_list,
-            #                                rbox_weights_list_refine, pos_inds_list_refine)
-
             labels_list, label_weights_list, rbox_weights_list_refine, num_pos, pos_normalize_term = multi_apply(
                 self.point_samples_selection,
                 quality_assess_list,
