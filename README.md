@@ -39,7 +39,8 @@ The mAOE results on DOTA val set are shown in the table below(password:aabb).
 
  
 # Visual results
-The visual results of learning points and the oriented bounding box.
+The visual results of learning points and the oriented bounding boxes. The visualization code is ![show_learning_points_and_boxes.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/show_learning_points_and_boxes.py).
+
 * Learning points
 
 ![Learning Points](https://user-images.githubusercontent.com/32033843/119213326-e44b7580-baf0-11eb-93a6-c86fcf80be58.png)
