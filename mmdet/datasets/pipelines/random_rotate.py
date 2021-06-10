@@ -21,7 +21,7 @@ class RandomRotate(object):
 
     @property
     def is_rotate(self):
-        return np.random.rand() > self.rate
+        return np.random.rand() < self.rate
 
     def apply_image(self, img, bound_h, bound_w, interp=cv2.INTER_LINEAR):
         """
