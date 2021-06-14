@@ -107,6 +107,6 @@ class RandomRotate(object):
         if len(gt_bboxes) == 0:
             return None
         results['gt_bboxes'] = rbox2poly(gt_bboxes).astype(np.float32)
-        results['labels'] = labels.astype(np.uint8)
+        results['gt_labels'] = labels.astype(np.uint8)
 
         return results
