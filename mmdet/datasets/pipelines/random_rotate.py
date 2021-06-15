@@ -21,7 +21,7 @@ class RandomRotate(object):
 
     @property
     def is_rotate(self):
-        return np.random.rand() > self.rate
+        return np.random.rand() < self.rate
 
     def apply_image(self, img, bound_h, bound_w, interp=cv2.INTER_LINEAR):
         """
@@ -107,6 +107,6 @@ class RandomRotate(object):
         if len(gt_bboxes) == 0:
             return None
         results['gt_bboxes'] = rbox2poly(gt_bboxes).astype(np.float32)
-        results['labels'] = labels.astype(np.uint8)
+        results['gt_labels'] = labels
 
         return results
