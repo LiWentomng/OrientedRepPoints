@@ -862,6 +862,7 @@ at::Tensor convex_giou_cuda(const at::Tensor ex_boxes, const at::Tensor gt_boxes
         overlaps_out[i] = point_grad_host[i];
     }
     cudaFree(point_grad_dev);
+    free(point_grad_host);
     // TODO improve this part
     return overlaps.to(ex_boxes.device());//, point_grad.to(ex_boxes.device());
 }
