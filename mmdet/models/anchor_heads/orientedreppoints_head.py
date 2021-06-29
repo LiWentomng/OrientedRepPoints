@@ -408,7 +408,7 @@ class OrientedRepPointsHead(nn.Module):
         with torch.no_grad():
 
             # refine_stage loc loss
-            # pos_losses_list, = multi_apply(self.points_quality_assessment, cls_scores,
+            # quality_assess_list, = multi_apply(self.points_quality_assessment, cls_scores,
             #                                pts_coordinate_preds_refine_image, labels_list,
             #                                rbox_gt_list_refine, label_weights_list,
             #                                rbox_weights_list_refine, pos_inds_list_refine)
