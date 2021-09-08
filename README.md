@@ -4,7 +4,7 @@
 The code for the implementation of “Oriented RepPoints”. ([arXiv preprint](https://arxiv.org/abs/2105.11111))
 
 # _News_:  
-Based on the _Oriented Reppoints_ detector with [Swin Transformer](https://arxiv.org/abs/2103.14030v1?ref=hackernoon.com) backbone, the **_3rd Place_** is achieved in the _2021 challenge of Learning to Understand Aerial Images ([LUAI](https://captain-whu.github.io/LUAI2021/index.html))_ held on ICCV’2021. The detailed information is introduced in this paper of "_[LUAI Challenge 2021 on Learning to Understand Aerial Images](https://arxiv.org/abs/2108.13246v1), ICCVW2021_". Congratulation to _[Kaixuan Hu](https://github.com/hukaixuan19970627)_!
+Based on the _Oriented Reppoints_ detector with [Swin Transformer](https://arxiv.org/abs/2103.14030v1?ref=hackernoon.com) backbone, the **_3rd Place_** is achieved in the _2021 challenge of Learning to Understand Aerial Images ([LUAI](https://captain-whu.github.io/LUAI2021/index.html))_ held on ICCV’2021. The detailed information is introduced in this paper of "_[LUAI Challenge 2021 on Learning to Understand Aerial Images](https://arxiv.org/abs/2108.13246v1), ICCVW2021_". Congratulation to _[HuKaixuan](https://github.com/hukaixuan19970627)_!
 
 
 # Introduction
