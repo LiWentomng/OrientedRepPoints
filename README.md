@@ -3,6 +3,10 @@
 
 The code for the implementation of “Oriented RepPoints”. ([arXiv preprint](https://arxiv.org/abs/2105.11111))
 
+# _News_:  
+Based on the _Oriented Reppoints_ detector with [Swin Transformer](https://arxiv.org/abs/2103.14030v1?ref=hackernoon.com) backbone, the **_3rd Place_** is achieved in the _2021 challenge of Learning to Understand Aerial Images ([LUAI](https://captain-whu.github.io/LUAI2021/index.html))_ held on ICCV’2021. The detailed information is introduced in this paper of "_[LUAI Challenge 2021 on Learning to Understand Aerial Images](https://arxiv.org/abs/2108.13246v1), ICCVW2021_". Congratulation to _[Kaixunan Hu](https://github.com/hukaixuan19970627)_.
+
+
 # Introduction
 Oriented RepPoints employs a set of adaptive points to capture the geometric and spatial information of the arbitrary-oriented objects, which is able to automatically arrange themselves over the object in a spatial and semantic scenario. To facilitate the supervised learning, the oriented conversion function is proposed to explicitly map the adaptive point set into an oriented bounding box. Moreover, we introduce an effective quality assessment measure to select the point set samples for training, which can choose the representative items with respect to their potentials on orientated object detection. Furthermore, we suggest a spatial constraint to penalize the outlier points outside the groundtruth bounding box. In addition to the traditional evaluation metric mAP focusing on overlap ratio, we propose a new metric mAOE to measure the orientation accuracy that is usually neglected in the previous studies on oriented object detection. Experiments on three widely used datasets including DOTA, HRSC2016 and UCAS-AOD demonstrate that our proposed approach is effective. 
 
