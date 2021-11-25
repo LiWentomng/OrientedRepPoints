@@ -2,7 +2,7 @@ import os
 import os.path as osp
 
 from DOTA_devkit.DOTA2JSON import generate_json_labels
-from DOTA_devkit.DOTA2COCO import DOTA2COCOTrain, DOTA2COCOTest, wordname_15
+from DOTA_devkit.DOTA2COCO_poly import DOTA2COCOTrain, DOTA2COCOTest, wordname_15
 
 from DOTA_devkit.ImgSplit_multi_process import splitbase as splitbase_trainval
 from DOTA_devkit.SplitOnlyImage_multi_process import \
@@ -71,6 +71,6 @@ def prepare_multi_scale_data(src_path, dst_path, gap=200, subsize=1024, scales=[
 
 if __name__ == '__main__':
     # single scale
-    prepare_multi_scale_data('/mnt/SSD/lwt_workdir/data/dota/',
-                             '/mnt/SSD/lwt_workdir/data/dota_1024_train_val',scales=[1.0])
+    prepare_multi_scale_data('path/data/dota/',
+                             'path/data/dota_1024_train_val',scales=[1.0])
     print('done')

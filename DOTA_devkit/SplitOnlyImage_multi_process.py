@@ -106,7 +106,7 @@ class splitbase():
 
 
 if __name__ == '__main__':
-    split = splitbase(r'data/dota/test/images', r'/workfs/jmhan/dota_ms_1024/test_split/images',
+    split = splitbase(r'data/dota/test/images', r'/test_split/images',
                       gap=200, subsize=1024, num_process=32)
     split.splitdata(1)
     split.splitdata(0.5)

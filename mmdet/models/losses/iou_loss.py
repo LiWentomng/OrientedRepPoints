@@ -62,11 +62,11 @@ class IoULoss(nn.Module):
 
 
 '''
-gt box and  convex hull of points set for giou loss
+oriented gt box and convex hull of points set for giou loss
 from SDL-GuoZonghao:https://github.com/SDL-GuoZonghao/BeyondBoundingBox/blob/main/mmdet/models/losses/iou_loss.py
 '''
 
-class GIoULossFuction(Function):
+class OBBGIoULossFuction(Function):
     @staticmethod
     def forward(ctx, pred, target, weight=None, reduction=None, avg_factor=None, loss_weight=1.0):
         ctx.save_for_backward(pred)
@@ -99,11 +99,11 @@ class GIoULossFuction(Function):
         convex_points_grad = ctx.convex_points_grad
         return convex_points_grad, None, None, None, None, None
 
-convex_giou_loss = GIoULossFuction.apply
+convex_giou_loss = OBBGIoULossFuction.apply
 @LOSSES.register_module
-class GIoULoss(nn.Module):
+class OBBGIoULoss(nn.Module):
     def __init__(self, reduction='mean', loss_weight=1.0):
-        super(GIoULoss, self).__init__()
+        super(OBBGIoULoss, self).__init__()
         self.reduction = reduction
         self.loss_weight = loss_weight
 

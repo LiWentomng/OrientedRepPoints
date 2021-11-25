@@ -14,6 +14,6 @@ def preprare_hrsc2016(data_dir):
     generate_json_labels(test_dir,osp.join(test_dir,'test.json'), trainval=False)
 
 if __name__ == '__main__':
-    hrsc2016_dir = '/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/hrsc2016/'
+    hrsc2016_dir = '/data/hrsc2016/'
     preprare_hrsc2016(hrsc2016_dir)
     print('done')

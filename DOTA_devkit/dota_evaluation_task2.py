@@ -229,10 +229,7 @@ def voc_eval(detpath,
     return rec, prec, ap
 
 def main():
-    # detpath = r'E:\documentation\OneDrive\documentation\DotaEvaluation\evluation_task2\evluation_task2\faster-rcnn-nms_0.3_task2\nms_0.3_task\Task2_{:s}.txt'
-    # annopath = r'I:\dota\testset\ReclabelTxt-utf-8\{:s}.txt'
-    # imagesetfile = r'I:\dota\testset\va.txt'
- 
+
     detpath = r'work_dirs/temp/result_merge/Task2_{:s}.txt'
     annopath = r'data/dota/test/hbb_label_txt/{:s}.txt'# change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
     imagesetfile = r'data/dota/test/testset.txt'

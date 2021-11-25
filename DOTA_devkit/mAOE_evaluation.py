@@ -171,9 +171,9 @@ def aoe_eval(detpath,
     return angle_dif_list
 
 def main():
-    detpath = r'/mnt/SSD/lwt_workdir/data/dota_angle/result_merge_fasterrcnn/{:s}.txt'
-    annopath = r'/mnt/SSD/lwt_workdir/data/dota_new/val/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    imagesetfile = r'/mnt/SSD/lwt_workdir/data/dota_new/val/test.txt'
+    detpath = r'/result_merge_fasterrcnn/{:s}.txt'
+    annopath = r'dota/val/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
+    imagesetfile = r'/dota/val/test.txt'
     
     # For DOTA-v1.0
     classnames = ['plane', 'baseball-diamond', 'bridge', 'ground-track-field', 'small-vehicle', 'large-vehicle', 'ship', 'tennis-court',

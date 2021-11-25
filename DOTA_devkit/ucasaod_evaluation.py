@@ -270,9 +270,9 @@ def voc_eval(detpath,
 
 def main():
     
-    detpath = r'/mnt/SSD/lwt_workdir/BeyondBoundingBox/ucasaod_pkl/ucas_angle/result_raw_retinanet/Task1_{:s}.txt'
-    annopath = r'/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Test/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    imagesetfile = r'/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Test/test.txt'
+    detpath = r'/result_raw_retinanet/Task1_{:s}.txt'
+    annopath = r'/data/ucas_aod/Test/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
+    imagesetfile = r'/data/ucas_aod/Test/test.txt'
 
 
     # For ucasaod

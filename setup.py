@@ -8,6 +8,10 @@ import torch
 from torch.utils.cpp_extension import BuildExtension, CUDAExtension
 
 
+"""
+CUDA functions setup for Oriented RepPoints.
+"""
+
 def readme():
     with open('README.md', encoding='utf-8') as f:
         content = f.read()
@@ -235,6 +239,31 @@ if __name__ == '__main__':
                 module='mmdet.ops.nms',
                 sources=['src/rnms_cpu.cpp']),
             make_cuda_ext(
+                name='minarearect',
+                module='mmdet.ops.minarearect',
+                sources=['src/minarearect_cuda.cpp', 'src/minarearect_kernel.cu']),
+            make_cuda_ext(
+                name='chamfer_2d',
+                module='mmdet.ops.chamfer_2d',
+                sources=['src/chamfer_cuda.cpp', 'src/chamfer_2d.cu']),
+            make_cuda_ext(
+                name='point_justify',
+                module='mmdet.ops.point_justify',
+                sources=['src/points_justify.cpp', 'src/points_justify_kernel.cu']
+            ),
+            make_cuda_ext(
+                name='box_iou_rotated_cuda',
+                module='mmdet.ops.box_iou_rotated',
+                sources=['src/box_iou_rotated_cpu.cpp', 'src/box_iou_rotated_cuda.cu']),
+            make_cuda_ext(
+                name='convex_giou_cuda',
+                module='mmdet.ops.iou',
+                sources=['src/convex_giou_cuda.cpp', 'src/convex_giou_kernel.cu']),
+            make_cuda_ext(
+                name='convex_iou_cuda',
+                module='mmdet.ops.iou',
+                sources=['src/convex_iou_cuda.cpp', 'src/convex_iou_kernel.cu']),
+            make_cuda_ext(
                 name='nms_cuda',
                 module='mmdet.ops.nms',
                 sources=['src/nms_cuda.cpp', 'src/nms_kernel.cu']),
@@ -246,14 +275,6 @@ if __name__ == '__main__':
                 name='rnms_cuda',
                 module='mmdet.ops.nms',
                 sources=['src/rnms_cuda.cpp', 'src/rnms_kernel.cu']),
-            make_cuda_ext(
-                name='convex_giou_cuda',
-                module='mmdet.ops.iou',
-                sources=['src/convex_giou_cuda.cpp', 'src/convex_giou_kernel.cu']),
-            make_cuda_ext(
-                name='convex_iou_cuda',
-                module='mmdet.ops.iou',
-                sources=['src/convex_iou_cuda.cpp', 'src/convex_iou_kernel.cu']),
             make_cuda_ext(
                 name='roi_align_cuda',
                 module='mmdet.ops.roi_align',
@@ -315,23 +336,6 @@ if __name__ == '__main__':
                     'src/carafe_naive_cuda.cpp',
                     'src/carafe_naive_cuda_kernel.cu'
                 ]),
-            make_cuda_ext(
-                name='minarearect',
-                module='mmdet.ops.minarearect',
-                sources=['src/minarearect_cuda.cpp', 'src/minarearect_kernel.cu']),
-            make_cuda_ext(
-                name='chamfer_2d',
-                module='mmdet.ops.chamfer_2d',
-                sources=['src/chamfer_cuda.cpp', 'src/chamfer_2d.cu']),
-            make_cuda_ext(
-                name='point_justify',
-                module='mmdet.ops.point_justify',
-                sources=['src/points_justify.cpp', 'src/points_justify_kernel.cu']
-            ),
-            make_cuda_ext(
-                name='box_iou_rotated_cuda',
-                module='mmdet.ops.box_iou_rotated',
-                sources=['src/box_iou_rotated_cpu.cpp', 'src/box_iou_rotated_cuda.cu']),
         ],
         cmdclass={'build_ext': BuildExtension},
         zip_safe=False)

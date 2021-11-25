@@ -1,79 +1,160 @@
 # Oriented RepPoints for Aerial Object Detection
-![图片](https://user-images.githubusercontent.com/32033843/119212550-b44da380-baeb-11eb-9de2-61ce0d812131.png)
 
-The code for the implementation of “Oriented RepPoints”. ([arXiv preprint](https://arxiv.org/abs/2105.11111))
-
-# _News_  
-Based on the _Oriented Reppoints_ detector with [Swin Transformer](https://github.com/SwinTransformer/Swin-Transformer-Object-Detection) backbone, the **_3rd Place_** is achieved on the **Task 1** and the **_2nd Place_** is achieved on the **Task 2** of _2021 challenge of Learning to Understand Aerial Images ([LUAI](https://captain-whu.github.io/LUAI2021/index.html))_ held on ICCV’2021. The detailed information is introduced in this paper of "_[LUAI Challenge 2021 on Learning to Understand Aerial Images](https://arxiv.org/abs/2108.13246v1), ICCVW2021_".
-
-
-# Introduction
-Oriented RepPoints employs a set of adaptive points to capture the geometric and spatial information of the arbitrary-oriented objects, which is able to automatically arrange themselves over the object in a spatial and semantic scenario. To facilitate the supervised learning, the oriented conversion function is proposed to explicitly map the adaptive point set into an oriented bounding box. Moreover, we introduce an effective quality assessment measure to select the point set samples for training, which can choose the representative items with respect to their potentials on orientated object detection. Furthermore, we suggest a spatial constraint to penalize the outlier points outside the groundtruth bounding box. In addition to the traditional evaluation metric mAP focusing on overlap ratio, we propose a new metric mAOE to measure the orientation accuracy that is usually neglected in the previous studies on oriented object detection. Experiments on three widely used datasets including DOTA, HRSC2016 and UCAS-AOD demonstrate that our proposed approach is effective. 
-
+Our full implementation for “Oriented RepPoints”.
+```
+orientedreppoints
+|——configs
+|  |--dota
+|  |  |--orientedreppoints_r50.py
+|  |  |--orientedreppoints_r101.py
+|  |  |--orientedreppoints_swin-t.py
+|——mmdet
+|  |--models
+|  |  |--oriented_detectors
+|  |  |  |--orientedreppoints_detector.py
+|  |  |--dense_heads
+|  |  |  |--orientedreppoints_head.py
+```
 
 # Installation
-Please refer to ![install.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/install.md) for installation and dataset preparation.
+## Requirements
+* Linux
+* Python 3.7+ 
+* PyTorch1.3 or higher
+* CUDA 9.0 or higher
+* mmdet==1.1.0
+* mmcv-full==1.3.15
+* GCC 4.9 or higher
+* NCCL 2
+
+We have tested the following versions of OS and softwares：
+* OS：Ubuntu 16.04
+* CUDA: 10.0
+* Python 3.7
+* PyTorch 1.3.1
+
+## Install 
+a. Create a conda virtual environment and activate it.  
+```
+conda create -n orientedreppoints python=3.7 -y 
+source activate orientedreppoints
+```
+b. Install PyTorch and torchvision following the [official instructions](https://pytorch.org/get-started/previous-versions/), e.g.,
+```
+conda install pytorch=1.3 torchvision cudatoolkit=10.0 -c pytorch
+```
+c. Install orientedreppoints.
+
+```python 
+cd OrientedRepPoints
+pip install -r requirements.txt
+python setup.py develop  #or "pip install -v -e ."
+```
+
+## Install DOTA_devkit
+
+```
+sudo apt-get install swig
+```
+```
+cd DOTA_devkit
+swig -c++ -python polyiou.i
+python setup.py build_ext --inplace
+```
+## Prepare dataset
+It is recommended to symlink the dataset root to $orientedreppoints/data. If your folder structure is different, you may need to change the corresponding paths in config files.
+```
+orientedreppoints
+|——mmdet
+|——tools
+|——configs
+|——data
+|  |——dota
+|  |  |——trainval_split
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——trainval.json
+|  |  |——test_split
+|  |  |  |——images
+|  |  |  |——test.json
+|  |——HRSC2016
+|  |  |——Train
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——trainval.txt
+|  |  |  |——trainval.json
+|  |  |——Test
+|  |  |  |——images
+|  |  |  |——test.txt
+|  |  |  |——test.json
+|  |——UCASAOD
+|  |  |——Train
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——trainval.txt
+|  |  |  |——trainval.json
+|  |  |——Test
+|  |  |  |——images
+|  |  |  |——test.txt
+|  |  |  |——test.json
+|  |——DIOR-R
+|  |  |——Train
+|  |  |  |——images
+|  |  |  |——labelTxt
+|  |  |  |——trainval.txt
+|  |  |  |——trainval.json
+|  |  |——Test
+|  |  |  |——images
+|  |  |  |——test.txt
+|  |  |  |——test.json
+```
+Note:
+* `trainval.txt` and `test.txt` in HRSC2016, UCASAOD and DIOR-R are `.txt` files recording image names without extension.
 
 
 # Getting Started 
-This repo is based on ![mmdetection](https://github.com/open-mmlab/mmdetection). Please see ![getting_started.md](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/getting_started.md) for the basic usage.
+Our code is based on ![mmdetection](https://github.com/open-mmlab/mmdetection). 
 
-# Results and Models
-The results on DOTA test set are shown in the table below(password:aabb). More detailed results please see the paper.
+## Train a model
 
-  Model| Backbone  | MS | Rotate | mAP | Download
- ----  | ----- | ------  | ------| ------ | ------  
- OrientedReppoints| R-50| - | -| 75.68 |[model](https://pan.baidu.com/s/1fCgmpd3MWoCbI80wYwtV2w)
- OrientedReppoints| R-101| - | √| 76.21 |[model](https://pan.baidu.com/s/1WN2QKMR6vrTzrJGCcukt8A)
- OrientedReppoints| R-101| √ | √ | 78.12|[model](https://pan.baidu.com/s/1Rv2ujQEt56R9nw-QjJlMIg)
- 
+1. Train  with a single GPU 
 
-The mAOE results on DOTA val set are shown in the table below(password:aabb).
-
-  Model| Backbone | mAOE | Download
- ----  | ----- | ------  | ------
- OrientedReppoints| R-50| 5.93° |[model](https://pan.baidu.com/s/1TeHDeuVTKpXd5KdYY51TUA)
-
-
- Note：
- * Wtihout the ground-truth of test subset, the mAOE of orientation evaluation is calculated on the val subset(original train subset for training).
- * The orientation (angle) of an aerial object is define as below, the detail of mAOE, please see the paper. The code of mAOE is [mAOE_evaluation.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/DOTA_devkit/mAOE_evaluation.py).
- ![微信截图_20210522135042](https://user-images.githubusercontent.com/32033843/119216186-be2fd080-bb04-11eb-9736-1f82c6666171.png)
-
- 
-# Visual results
-The visual results of learning points and the oriented bounding boxes. The visualization code is ![show_learning_points_and_boxes.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/show_learning_points_and_boxes.py).
-
-* Learning points
-
-![Learning Points](https://user-images.githubusercontent.com/32033843/119213326-e44b7580-baf0-11eb-93a6-c86fcf80be58.png)
-
-* Oriented bounding box
-
-![Oriented Box](https://user-images.githubusercontent.com/32033843/119213335-edd4dd80-baf0-11eb-86db-459fe2a14735.png)
-
-
-# Citation
 ```shell
-@article{Li2021oriented,
-  title={Oriented RepPoints for Aerial Object Detection},
-  author={Wentong Li and Jianke Zhu},
-  journal={arXiv preprint arXiv:2105.11111},
-  year={2021}
-}
+CUDA_VISIBLE_DEVICES=0 python tools/train.py  configs/dota/orientedreppoints_r50.py
 ```
 
+2. Train with multiple GPUs
 
-#  Acknowledgements
-We have used utility functions from other wonderful open-source projects, we would espeicially thank the authors of:
+```shell
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh configs/dota/orientedreppoints_r50.py 4
+```
+All outputs (log files and checkpoints) will be saved to the working directory,
+which is specified by `work_dirs` in the config file.
 
-[MMdetection](https://github.com/open-mmlab/mmdetection)
+## Inferenece 
+We provide the testing scripts to evaluate the trained model.
 
-[DOTA_devkit](https://github.com/CAPTAIN-WHU/DOTA_devkit)
+Examples:
 
-[AerialDetection](https://github.com/dingjiansw101/AerialDetection)
+1. Test OrientedRepPoints with single GPU.
 
-[BeyoundBoundingBox](https://github.com/sdl-guozonghao/beyondboundingbox)
+```shell
+CUDA_VISIBLE_DEVICES=0 python tools/test.py configs/dota/orientedreppoints_r50.py \
+    work_dirs/orientedreppoints_r50/epoch_40.pth \ 
+    --out work_dirs/orientedreppoints_r50/results.pkl
+
+```
+2. Test OrientedRepPoints with 4 GPUs.
+```shell
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_r50.py \
+    work_dirs/orientedreppoints_r50/epoch_40.pth 4 \ 
+    --out work_dirs/orientedreppoints_r50/results.pkl
+```
+
+*If you want to evaluate the mAP results on DOTA test-dev, please parse the results.pkl, and merge the txt results. and zip the files  and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
+
+
+
 
 
 
