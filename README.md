@@ -87,26 +87,8 @@ orientedreppoints
 |  |  |  |——images
 |  |  |  |——test.txt
 |  |  |  |——test.json
-|  |——UCASAOD
-|  |  |——Train
-|  |  |  |——images
-|  |  |  |——labelTxt
-|  |  |  |——trainval.txt
-|  |  |  |——trainval.json
-|  |  |——Test
-|  |  |  |——images
-|  |  |  |——test.txt
-|  |  |  |——test.json
+|  |——UCAS-AOD
 |  |——DIOR-R
-|  |  |——Train
-|  |  |  |——images
-|  |  |  |——labelTxt
-|  |  |  |——trainval.txt
-|  |  |  |——trainval.json
-|  |  |——Test
-|  |  |  |——images
-|  |  |  |——test.txt
-|  |  |  |——test.json
 ```
 Note:
 * `trainval.txt` and `test.txt` in HRSC2016, UCASAOD and DIOR-R are `.txt` files recording image names without extension.
@@ -154,8 +136,16 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_
 *If you want to evaluate the mAP results on DOTA test-dev, please parse the results.pkl, and merge the txt results. and zip the files  and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
 
 
+# Citation 
 
+```shell
+@article{li2021oriented,
+	title="Oriented RepPoints for Aerial Object Detection.",
+	author="Wentong {Li}, Yijie {Chen}, Kaixuan {Hu}, Jianke {Zhu}.",
+	journal="arXiv preprint arXiv:2105.11111",
+	year="2021"
+}
 
-
+```
 
 
