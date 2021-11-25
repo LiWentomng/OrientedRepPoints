@@ -1,6 +1,5 @@
 # Oriented RepPoints for Aerial Object Detection
 
-Our full implementation for “Oriented RepPoints”.
 ```
 orientedreppoints
 |——configs
