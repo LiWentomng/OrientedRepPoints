@@ -1,20 +1,5 @@
 # Oriented RepPoints for Aerial Object Detection
 
-```
-orientedreppoints
-|——configs
-|  |--dota
-|  |  |--orientedreppoints_r50.py
-|  |  |--orientedreppoints_r101.py
-|  |  |--orientedreppoints_swin-t.py
-|——mmdet
-|  |--models
-|  |  |--oriented_detectors
-|  |  |  |--orientedreppoints_detector.py
-|  |  |--dense_heads
-|  |  |  |--orientedreppoints_head.py
-```
-
 # Installation
 ## Requirements
 * Linux
