@@ -54,6 +54,13 @@ orientedreppoints
 |——mmdet
 |——tools
 |——configs
+|  |--dota
+|  |  |--orientedreppoints_r50.py
+|  |  |--orientedreppoints_r101.py
+|  |  |--orientedreppoints_swin-t.py
+|  |--hrsc2016
+|  |--ucas-aod
+|  |--dior-r
 |——data
 |  |——dota
 |  |  |——trainval_split
