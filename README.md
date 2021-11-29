@@ -1,5 +1,7 @@
 # [Oriented RepPoints for Aerial Object Detection](https://arxiv.org/pdf/2105.11111.pdf)
 
+![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
+
 # Installation
 ## Requirements
 * Linux
@@ -119,6 +121,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_
 
 *If you want to evaluate the mAP results on DOTA test-dev, please parse the results.pkl, and merge the txt results. and zip the files  and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
 
+## Learning Adaptive Points
+
+![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
 
 # Citation 
 
