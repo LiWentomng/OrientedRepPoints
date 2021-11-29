@@ -1,4 +1,4 @@
-# Oriented RepPoints for Aerial Object Detection
+# [Oriented RepPoints for Aerial Object Detection](https://arxiv.org/pdf/2105.11111.pdf)
 
 # Installation
 ## Requirements
