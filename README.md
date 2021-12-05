@@ -3,8 +3,6 @@
 
 ![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
 
-Based on the Oriented RepPoints detector, the 3rd Place is achieved on the Task 1 and the 2nd Place is achieved on the Task 2 of *2021 challenge of Learning to Understand Aerial Images (LUAI)*. The detailed introduction about it, please refer this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
-
 Any questions, please contact me at: liwentong@zju.edu.cn.
 
 # Installation
@@ -136,6 +134,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_
 ## Learning Adaptive Points
 
 ![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
+
+## More
+Based on the Oriented RepPoints detector, the 3rd Place is achieved on the Task 1 and the 2nd Place is achieved on the Task 2 of *2021 challenge of Learning to Understand Aerial Images (LUAI)*. The detailed introduction about it, please refer this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
 
 # Citation 
 
