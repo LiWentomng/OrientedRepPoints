@@ -1,6 +1,11 @@
 # [Oriented RepPoints for Aerial Object Detection](https://arxiv.org/pdf/2105.11111.pdf)
+> Wentong Li, Yijie Chen, Kaixuan Hu, Jianke Zhu*
 
 ![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
+
+Based on the Oriented RepPoints detector, the 3rd Place is achieved on the Task 1 and the 2nd Place is achieved on the Task 2 of *2021 challenge of Learning to Understand Aerial Images (LUAI)*. The detailed introduction about it, please refer this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
+
+Any questions, please contact me at: liwentong@zju.edu.cn.
 
 # Installation
 ## Requirements
