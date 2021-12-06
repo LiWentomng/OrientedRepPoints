@@ -3,8 +3,6 @@
 
 ![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
 
-Any questions, please contact me at: liwentong@zju.edu.cn.
-
 # Installation
 ## Requirements
 * Linux
