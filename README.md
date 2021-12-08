@@ -136,6 +136,15 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_
 ## More
 Based on the Oriented RepPoints detector, the 3rd Place is achieved on the Task 1 and the 2nd Place is achieved on the Task 2 of *2021 challenge of Learning to Understand Aerial Images (LUAI)*. The detailed introduction about it, please refer this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
 
+## Acknowledgement
+
+Here are some great resources we benefit:
+
+[AerialDetection](https://github.com/dingjiansw101/AerialDetection)
+
+[BeyondBoundingBox](https://github.com/SDL-GuoZonghao/BeyondBoundingBox)
+
+
 # Citation 
 
 ```shell
