@@ -3,6 +3,13 @@
 
 ![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
 
+## *News*
+* The codes have been refined, and [Swin-transformer](https://github.com/microsoft/Swin-Transformer) backbone has been included in this repo.
+* Based on OrientedReppoints detector, the **2rd**  and **3rd** Place is achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. The detailed codes about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
+
+### *Learning Adaptive Points*
+![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
+
 # Installation
 ## Requirements
 * Linux
@@ -129,12 +136,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_test.sh configs/dota/orientedrepoints_
 
 *If you want to evaluate the mAP results on DOTA test-dev, please parse the results.pkl, and merge the txt results. and zip the files  and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
 
-## Learning Adaptive Points
 
-![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
-
-## More
-Based on the Oriented RepPoints detector, the 3rd Place is achieved on the Task 1 and the 2nd Place is achieved on the Task 2 of *2021 challenge of Learning to Understand Aerial Images (LUAI)*. The detailed introduction about it, please refer this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
 
 ## Acknowledgement
 
