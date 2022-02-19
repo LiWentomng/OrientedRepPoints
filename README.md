@@ -3,10 +3,10 @@
 
 ![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
 
-## *News*
-* The codes have been refined, and [Swin-transformer](https://github.com/microsoft/Swin-Transformer) backbone has been included in this repo.
-* Based on OrientedRepPoints detector, the **2rd**  and **3rd** Place are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. The detailed codes and introduction about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
+##
+* Based on OrientedRepPoints detector, the **2rd**  and **3rd** Places are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. The detailed codes and introduction about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
 
+##
 ### *Learning Points of Oriented RepPoints*
 ![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
 
