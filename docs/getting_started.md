@@ -27,7 +27,7 @@ python tools/test.py configs/dota/orientedrepoints_r50_demo.py \
 
 
 *If you want to evaluate the result on DOTA test-dev, please read the results.pkl, and run mergs the txt results. and zip the files  and submit it to the  [evaluation server](https://captain-whu.github.io/DOTA/index.html).
-*The code for parsing the .pkl file and merging the results for DOTA, please refer to [tools/parse_pkl/parse_pkl_mege_results_for_dota_evaluation.py]().
+*The code for parsing the .pkl file and merging the results for DOTA, please refer to [this](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/parse_pkl_mege_results_for_dota_evaluation.py).
 
 To evaluate on the val set with ground-truth annotations, please refer to [DOTA_devkit/dota_evaluation_task1.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/DOTA_devkit/dota_evaluation_task1.py),  and [DOTA_devkit/mAOE_evaluation.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/DOTA_devkit/mAOE_evaluation.py) for mAOE evaluation.
 
