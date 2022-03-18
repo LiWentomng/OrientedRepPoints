@@ -44,8 +44,6 @@ The visual results of learning points and the oriented bounding boxes. The visua
 
 ![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
 
-Note: The visualization of learning points are obtained without the Point-wise Correction of Q in APAA. 
-
 
 # Citation
 ```shell
