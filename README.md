@@ -22,7 +22,7 @@ The results on DOTA test set are shown in the table below. More detailed results
  OrientedReppoints| Swin-Tiny|    | 77.30|[model](https://drive.google.com/file/d/1dXDu1xrGg2OmISOXGiJlngNKtiELMCqT/view?usp=sharing) | [log](https://drive.google.com/file/d/1XaDbaV0zbi3lwmWqTQKpelfDEmsvLv6v/view?usp=sharing)
  OrientedReppoints| Swin-Tiny| √  | 77.63|above  |above
 
-The mAOE results on DOTA val set are shown in the table below(password:aabb).
+The mAOE results on DOTA val set are shown in the table below.
 
   Model| Backbone | mAOE | Download
  ----  | ----- | ------  | ------
