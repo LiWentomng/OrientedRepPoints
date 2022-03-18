@@ -1,7 +1,8 @@
 # [Oriented RepPoints for Aerial Object Detection](https://arxiv.org/pdf/2105.11111.pdf)
 > Wentong Li, Yijie Chen, Kaixuan Hu, Jianke Zhu*
 
-![](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/overallnetwork.png)
+<img src="https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/overallnetwork.png" width="800px">
+
 # 
 * Based on OrientedRepPoints detector, the **2rd**  and **3rd** Places are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. The detailed codes and introductions about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA).
 
@@ -37,7 +38,7 @@ The visual results of learning points and the oriented bounding boxes. The visua
 
 * Oriented bounding box
 
-![Box](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png)
+<img src="https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/visualization.png" width="800px">
 
 * Learning Adaptive Points
 
