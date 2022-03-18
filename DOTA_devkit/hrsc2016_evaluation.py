@@ -269,11 +269,10 @@ def voc_eval(detpath,
     return rec, prec, ap
 
 def main():
-    
-    # detpath = r'/mnt/SSD/lwt_workdir/BeyondBoundingBox/hrsc_pkl/result_raw/Task1_{:s}.txt'
-    detpath = r'/result_raw/Task1_{:s}.txt'
-    annopath = r'/data/HRSC2016/Test/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
-    imagesetfile = r'/data/HRSC2016/Test/test.txt'
+
+    detpath = r'/mnt/SSD/lwt_workdir/orientedreppoints/hrsc_pkl/s2a/result_raw/Task1_{:s}.txt'
+    annopath = r'/mnt/SSD/lwt_workdir/orientedreppoints/data/HRSC2016/Test/labelTxt/{:s}.txt' # change the directory to the path of val/labelTxt, if you want to do evaluation on the valset
+    imagesetfile = r'/mnt/SSD/lwt_workdir/orientedreppoints/data/HRSC2016/Test/test.txt'
 
 
     # For HRSC2016

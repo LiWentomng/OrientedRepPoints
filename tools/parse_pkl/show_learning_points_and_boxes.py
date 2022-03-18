@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+"""
+@author: liwentong
+"""
 
 import pickle
 import cv2
@@ -8,7 +10,7 @@ import os
 import shutil
 import numpy as np 
 
-detection_pkl_path = './orientedreppoints_r50.pkl'
+detection_pkl_path = './orientedreppoints_r50_demo.pkl'
 val_json = './test_dota.json'
 
 outpath = './vis_result/'
@@ -125,49 +127,49 @@ for iter_img in range(num_img):
                         print(bboxes[iter_box])
                         if iter_box == 0:
                             class_name = 'plane'
-                            r_color = (0, 0, 255) 
+                            r_color = (0, 0, 255) #纯红
                         elif iter_box == 1:
                             class_name = 'baseball-diamond'
-                            r_color = (0, 255, 0) 
+                            r_color = (0, 255, 0) #纯绿
                         elif iter_box == 2:
                             class_name = 'bridge'
-                            r_color = (255, 0, 0) 
+                            r_color = (255, 0, 0) # 纯蓝
                         elif iter_box == 3:
                             class_name = 'ground-track-field' 
-                            r_color = (169, 169, 169) 
+                            r_color = (169, 169, 169) # 深灰色
                         elif iter_box == 4:
                             class_name = 'small-vehicle'
-                            r_color = (0, 0, 139)
+                            r_color = (0, 0, 139) #深红色
                         elif iter_box == 5:
                             class_name = 'large-vehicle'
-                            r_color = (0, 69, 255) 
+                            r_color = (0, 69, 255) #橙红色
                         elif iter_box == 6:
                             class_name = 'ship'
-                            r_color = (30, 105, 210)#
+                            r_color = (30, 105, 210)# 巧克力色
                         elif iter_box == 7:
                             class_name = 'tennis-court'
-                            r_color = (10,215,255)
+                            r_color = (10,215,255) #金色
                         elif iter_box == 8:
                             class_name = 'basketball-court'
-                            r_color = (0,128,128) 
+                            r_color = (0,128,128) #橄榄色
                         elif iter_box == 9:
                             class_name = 'storage-tank'
-                            r_color = (203,192,255) 
+                            r_color = (203,192,255) #粉色
                         elif iter_box == 10:
                             class_name = 'soccer-ball-field'
-                            r_color = (230,216,173) 
+                            r_color = (230,216,173) #天蓝色
                         elif iter_box == 11:
                             class_name = 'roundabout' 
-                            r_color = (238,130,238) 
+                            r_color = (238,130,238) #紫罗兰
                         elif iter_box == 12:
                             class_name = 'harbor'
-                            r_color = (144,238,144) 
+                            r_color = (144,238,144) #浅绿
                         elif iter_box == 13:
                             class_name = 'swimming-pool'
-                            r_color = (130,0,75) 
+                            r_color = (130,0,75) #藏青色
                         elif iter_box == 14:
                             class_name = 'helicopter'  
-                            r_color = (147,20,255) 
+                            r_color = (147,20,255) #深粉色
                         else:
                             class_name = None
                             

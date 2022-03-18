@@ -7,6 +7,7 @@ from PIL import Image
 
 from dota_poly2rbox import poly2rbox_single_v2, poly2rbox_single
 
+
 def parse_ann_info(img_base_path, label_base_path, img_name):
     lab_path = osp.join(label_base_path, img_name+'.txt')
     bboxes, labels, bboxes_ignore, labels_ignore = [], [], [], []
@@ -91,8 +92,8 @@ def generate_json_labels(src_path, out_path, trainval=True):
 
 
 if __name__ == '__main__':
-    generate_json_labels('/data/ucas_aod/Train/',
-                         '/data/ucas_aod/Train/trainval.json')
-    generate_json_labels('/data/ucas_aod/Test/',
-                         '/data/ucas_aod/Test/test.json', trainval=False)
+    generate_json_labels('/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Train/',
+                         '/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Train/trainval.json')
+    generate_json_labels('/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Test/',
+                         '/mnt/SSD/lwt_workdir/BeyondBoundingBox/data/ucas_aod/Test/test.json', trainval=False)
     print('done!')

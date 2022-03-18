@@ -110,13 +110,17 @@ def DOTA2COCOTest(srcpath, destfile, cls_names):
 
 if __name__ == '__main__':
 
-    DOTA2COCOTrain(r'/trainval_split/',
-                  r'/trainval_split/trainval_dota.json',
+    DOTA2COCOTrain(r'/mnt/SSD/lwt_workdir/s2anet_branch/data/dota_1024_ms_s2anet/trainval_split/',
+                  r'/mnt/SSD/lwt_workdir/s2anet_branch/data/dota_1024_ms_s2anet/trainval_split/trainval_coco_8points.json',
                   wordname_15)
-
-    DOTA2COCOTest(r'/test_split/',
-                 r'/test_split/test_dota.json',
+    #DOTA2COCOTrain(r'/mnt/SSD/lwt_workdir/s2anet_branch/data/ucas_aod/Train/',
+     #             r'/mnt/SSD/lwt_workdir/s2anet_branch/data/ucas_aod/Train/trainval_coco_8point.json',
+      #            ucas_aod)
+    DOTA2COCOTest(r'/mnt/SSD/lwt_workdir/s2anet_branch/data/dota_1024_ms_s2anet/test_split/',
+                 r'/mnt/SSD/lwt_workdir/s2anet_branch/data/dota_1024_ms_s2anet/test_split/test_coco_8point.json',
                  wordname_15)
-
+    # DOTA2COCOTest(r'/mnt/SSD/lwt_workdir/s2anet_branch/data/ucas_aod/Test/',
+    #               r'/mnt/SSD/lwt_workdir/s2anet_branch/data/ucas_aod/Test/test_coco_8point.json',
+    #               ucas_aod)
 
     print('DONE')

@@ -36,21 +36,21 @@ model = dict(
         point_base_scale=2,
         norm_cfg=norm_cfg,
         loss_cls=dict(type='FocalLoss', use_sigmoid=True, gamma=2.0, alpha=0.25, loss_weight=1.0),
-        loss_obox_init=dict(type='OBBGIoULoss', loss_weight=0.375), #GIOU loss of oriented bounding boxes(OBB)
-        loss_obox_refine=dict(type='OBBGIoULoss', loss_weight=1.0),
+        loss_rbox_init=dict(type='GIoULoss', loss_weight=0.375),
+        loss_rbox_refine=dict(type='GIoULoss', loss_weight=1.0),
         loss_spatial_init=dict(type='SpatialBorderLoss', loss_weight=0.05),
         loss_spatial_refine=dict(type='SpatialBorderLoss', loss_weight=0.1),
         top_ratio=0.4,))
 # training and testing settings
 train_cfg = dict(
     init=dict(
-        assigner=dict(type='OBBPointAssigner', scale=4, pos_num=1), # points assigner with OBB
+        assigner=dict(type='PointAssigner', scale=4, pos_num=1),
         allowed_border=-1,
         pos_weight=-1,
         debug=False),
     refine=dict(
         assigner=dict(
-            type='OBBMaxIoUAssigner', #pre-assign
+            type='MaxIoUAssigner', #pre-assign
             pos_iou_thr=0.1,
             neg_iou_thr=0.1,
             min_pos_iou=0,
@@ -69,20 +69,18 @@ test_cfg = dict(
 # dataset settings
 dataset_type = 'DotaDataset'
 data_root = 'data/dota_1024/'
-
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True),
-    dict(type='CorrectOBBox', correct_obbox=True, refine_obbox=True),
-    dict(type='PolyResize',
+    dict(type='CorrectBox', correct_rbbox=True, refine_rbbox=True),
+    dict(type='RotateResize',
         img_scale=[(1333, 768), (1333, 1280)],
         keep_ratio=True,
         multiscale_mode='range',
         clamp_rbbox=False),
-    dict(type='PolyRandomFlip', flip_ratio=0.5),
+    dict(type='RotateRandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size_divisor=32),
     dict(type='DefaultFormatBundle'),
@@ -92,11 +90,11 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1024, 1024),
+        img_scale=(1333, 1024),
         flip=False,
         transforms=[
-            dict(type='PolyResize', keep_ratio=True),
-            dict(type='PolyRandomFlip'),
+            dict(type='RotateResize', keep_ratio=True),
+            dict(type='RotateRandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
             dict(type='Pad', size_divisor=32),
             dict(type='ImageToTensor', keys=['img']),
@@ -144,8 +142,7 @@ log_config = dict(
 total_epochs = 40
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'work_dirs/orientedreppoints_r50/'
+work_dir = 'work_dirs/orientedreppoints_r50_demo/'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
-

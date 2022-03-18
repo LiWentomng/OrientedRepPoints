@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+"""
+@author: liwentong
+"""
 
 import pickle
 import cv2
@@ -6,7 +9,7 @@ import json
 import os 
 import shutil
 
-detection_pkl_path = './orientedreppoints_r50.pkl'
+detection_pkl_path = './orientedreppoints_r50_demo.pkl'
 val_json = './test_dota.json'
  
 result_raw_outpath = './txt_out/result_raw/'

@@ -3,12 +3,12 @@ from ..utils import multi_apply, unmap
 from .samplers import PseudoSampler
 from .assign_sampling import assign_and_sample, build_assigner
 
-def init_ori_pointset_target(proposals_list,
+def init_pointset_target(proposals_list,
                  valid_flag_list,
-                 gt_obboxes_list,
+                 gt_rbboxes_list,
                  img_metas,
                  cfg,
-                 gt_obboxes_ignore_list=None,
+                 gt_rbboxes_ignore_list=None,
                  gt_labels_list=None,
                  label_channels=1,
                  sampling=True,
@@ -24,17 +24,17 @@ def init_ori_pointset_target(proposals_list,
         valid_flag_list[i] = torch.cat(valid_flag_list[i])
 
     # compute targets for each image
-    if gt_obboxes_ignore_list is None:
-        gt_obboxes_ignore_list = [None for _ in range(num_imgs)]
+    if gt_rbboxes_ignore_list is None:
+        gt_rbboxes_ignore_list = [None for _ in range(num_imgs)]
     if gt_labels_list is None:
         gt_labels_list = [None for _ in range(num_imgs)]
-    (all_labels, all_label_weights, all_obbox_gt, all_proposals,
+    (all_labels, all_label_weights, all_rbbox_gt, all_proposals,
      all_proposal_weights, pos_inds_list, neg_inds_list, all_gt_inds_list) = multi_apply(
-        init_oripointset_target_single,
+        init_pointset_target_single,
         proposals_list,
         valid_flag_list,
-        gt_obboxes_list,
-        gt_obboxes_ignore_list,
+        gt_rbboxes_list,
+        gt_rbboxes_ignore_list,
         gt_labels_list,
         cfg=cfg,
         label_channels=label_channels,
@@ -49,19 +49,19 @@ def init_ori_pointset_target(proposals_list,
     labels_list = images_to_levels(all_labels, num_level_proposals)
     label_weights_list = images_to_levels(all_label_weights,
                                           num_level_proposals)
-    obbox_gt_list = images_to_levels(all_obbox_gt, num_level_proposals)
+    rbbox_gt_list = images_to_levels(all_rbbox_gt, num_level_proposals)
     proposals_list = images_to_levels(all_proposals, num_level_proposals)
     proposal_weights_list = images_to_levels(all_proposal_weights,
                                              num_level_proposals)
     gt_inds_list = images_to_levels(all_gt_inds_list, num_level_proposals)
-    return (labels_list, label_weights_list, obbox_gt_list, proposals_list,
+    return (labels_list, label_weights_list, rbbox_gt_list, proposals_list,
             proposal_weights_list, num_total_pos, num_total_neg, gt_inds_list)
 
 
-def init_oripointset_target_single(flat_proposals,
+def init_pointset_target_single(flat_proposals,
                         valid_flags,
-                        gt_obboxes,
-                        gt_obboxes_ignore,
+                        gt_rbboxes,
+                        gt_rbboxes_ignore,
                         gt_labels,
                         cfg,
                         label_channels=1,
@@ -74,16 +74,16 @@ def init_oripointset_target_single(flat_proposals,
     proposals = flat_proposals[inside_flags, :]
     if sampling:
         assign_result, sampling_result = assign_and_sample(
-            proposals, gt_obboxes, gt_obboxes_ignore, None, cfg)
+            proposals, gt_rbboxes, gt_rbboxes_ignore, None, cfg)
     else:
         bbox_assigner = build_assigner(cfg.assigner)
-        assign_result = bbox_assigner.assign(proposals, gt_obboxes, gt_obboxes_ignore, gt_labels)
+        assign_result = bbox_assigner.assign(proposals, gt_rbboxes, gt_rbboxes_ignore, gt_labels)
         bbox_sampler = PseudoSampler()
         sampling_result = bbox_sampler.sample(assign_result, proposals,
-                                              gt_obboxes)
+                                              gt_rbboxes)
     gt_inds = assign_result.gt_inds
     num_valid_proposals = proposals.shape[0]
-    obbox_gt = proposals.new_zeros([num_valid_proposals, 8])
+    rbbox_gt = proposals.new_zeros([num_valid_proposals, 8])
     pos_proposals = torch.zeros_like(proposals)
     proposals_weights = proposals.new_zeros(num_valid_proposals)
     labels = proposals.new_zeros(num_valid_proposals, dtype=torch.long)
@@ -91,8 +91,8 @@ def init_oripointset_target_single(flat_proposals,
     pos_inds = sampling_result.pos_inds
     neg_inds = sampling_result.neg_inds
     if len(pos_inds) > 0:
-        pos_gt_obboxes = sampling_result.pos_gt_rbboxes
-        obbox_gt[pos_inds, :] = pos_gt_obboxes
+        pos_gt_rbboxes = sampling_result.pos_gt_rbboxes
+        rbbox_gt[pos_inds, :] = pos_gt_rbboxes
         pos_proposals[pos_inds, :] = proposals[pos_inds, :]
         proposals_weights[pos_inds] = 1.0
         if gt_labels is None:
@@ -111,22 +111,22 @@ def init_oripointset_target_single(flat_proposals,
         num_total_proposals = flat_proposals.size(0)
         labels = unmap(labels, num_total_proposals, inside_flags)
         label_weights = unmap(label_weights, num_total_proposals, inside_flags)
-        obbox_gt = unmap(obbox_gt, num_total_proposals, inside_flags)
+        rbbox_gt = unmap(rbbox_gt, num_total_proposals, inside_flags)
         pos_proposals = unmap(pos_proposals, num_total_proposals, inside_flags)
         proposals_weights = unmap(proposals_weights, num_total_proposals,
                                   inside_flags)
         gt_inds = unmap(gt_inds, num_total_proposals, inside_flags)
 
-    return (labels, label_weights, obbox_gt, pos_proposals, proposals_weights,
+    return (labels, label_weights, rbbox_gt, pos_proposals, proposals_weights,
             pos_inds, neg_inds, gt_inds)
 
 
-def refine_ori_pointset_target(proposals_list,
+def refine_pointset_target(proposals_list,
                 valid_flag_list,
-                gt_obboxes_list,
+                gt_rbboxes_list,
                 img_metas,
                 cfg,
-                gt_obboxes_ignore_list=None,
+                gt_rbboxes_ignore_list=None,
                 gt_labels_list=None,
                 label_channels=1,
                 sampling=True,
@@ -140,17 +140,17 @@ def refine_ori_pointset_target(proposals_list,
         valid_flag_list[i] = torch.cat(valid_flag_list[i])
 
     # compute targets for each image
-    if gt_obboxes_ignore_list is None:
-        gt_obboxes_ignore_list = [None for _ in range(num_imgs)]
+    if gt_rbboxes_ignore_list is None:
+        gt_rbboxes_ignore_list = [None for _ in range(num_imgs)]
     if gt_labels_list is None:
         gt_labels_list = [None for _ in range(num_imgs)]
-    (all_labels, all_label_weights, all_obbox_gt, all_proposals,
+    (all_labels, all_label_weights, all_rbbox_gt, all_proposals,
      all_proposal_weights, pos_inds_list, neg_inds_list, all_gt_inds) = multi_apply(
-        refine_oripointset_target_single,
+        refine_pointset_target_single,
         proposals_list,
         valid_flag_list,
-        gt_obboxes_list,
-        gt_obboxes_ignore_list,
+        gt_rbboxes_list,
+        gt_rbboxes_ignore_list,
         gt_labels_list,
         cfg=cfg,
         label_channels=label_channels,
@@ -164,14 +164,14 @@ def refine_ori_pointset_target(proposals_list,
         pos_inds.append(pos_mask.nonzero().view(-1))
         pos_gt_index.append(all_gt_inds[i][pos_mask.nonzero().view(-1)])
 
-    return (all_labels, all_label_weights, all_obbox_gt, all_proposals,
+    return (all_labels, all_label_weights, all_rbbox_gt, all_proposals,
             all_proposal_weights, pos_inds, pos_gt_index)
 
 
-def refine_oripointset_target_single(flat_proposals,
+def refine_pointset_target_single(flat_proposals,
                         valid_flags,
-                        gt_obboxes,
-                        gt_obboxes_ignore,
+                        gt_rbboxes,
+                        gt_rbboxes_ignore,
                         gt_labels,
                         cfg,
                         label_channels=1,
@@ -184,17 +184,17 @@ def refine_oripointset_target_single(flat_proposals,
     proposals = flat_proposals[inside_flags, :]
     if sampling:
         assign_result, sampling_result = assign_and_sample(
-            proposals, gt_obboxes, gt_obboxes_ignore, None, cfg)
+            proposals, gt_rbboxes, gt_rbboxes_ignore, None, cfg)
     else:
         bbox_assigner = build_assigner(cfg.assigner)
-        assign_result = bbox_assigner.assign(proposals, gt_obboxes,
-                                             gt_obboxes_ignore, gt_labels)
+        assign_result = bbox_assigner.assign(proposals, gt_rbboxes,
+                                             gt_rbboxes_ignore, gt_labels)
         bbox_sampler = PseudoSampler()
         sampling_result = bbox_sampler.sample(assign_result, proposals,
-                                              gt_obboxes)
+                                              gt_rbboxes)
     gt_inds = assign_result.gt_inds
     num_valid_proposals = proposals.shape[0]
-    obbox_gt = proposals.new_zeros([num_valid_proposals, 8])
+    rbbox_gt = proposals.new_zeros([num_valid_proposals, 8])
     pos_proposals = torch.zeros_like(proposals)
     proposals_weights = proposals.new_zeros(num_valid_proposals)
     labels = proposals.new_zeros(num_valid_proposals, dtype=torch.long)
@@ -202,8 +202,8 @@ def refine_oripointset_target_single(flat_proposals,
     pos_inds = sampling_result.pos_inds
     neg_inds = sampling_result.neg_inds
     if len(pos_inds) > 0:
-        pos_gt_obboxes = sampling_result.pos_gt_rbboxes
-        obbox_gt[pos_inds, :] = pos_gt_obboxes
+        pos_gt_rbboxes = sampling_result.pos_gt_rbboxes
+        rbbox_gt[pos_inds, :] = pos_gt_rbboxes
         pos_proposals[pos_inds, :] = proposals[pos_inds, :]
         proposals_weights[pos_inds] = 1.0
         if gt_labels is None:
@@ -221,17 +221,18 @@ def refine_oripointset_target_single(flat_proposals,
         num_total_proposals = flat_proposals.size(0)
         labels = unmap(labels, num_total_proposals, inside_flags)
         label_weights = unmap(label_weights, num_total_proposals, inside_flags)
-        obbox_gt = unmap(obbox_gt, num_total_proposals, inside_flags)
+        rbbox_gt = unmap(rbbox_gt, num_total_proposals, inside_flags)
         pos_proposals = unmap(pos_proposals, num_total_proposals, inside_flags)
         proposals_weights = unmap(proposals_weights, num_total_proposals,
                                   inside_flags)
         gt_inds = unmap(gt_inds, num_total_proposals, inside_flags)
-    return (labels, label_weights, obbox_gt, pos_proposals, proposals_weights,
+    return (labels, label_weights, rbbox_gt, pos_proposals, proposals_weights,
             pos_inds, neg_inds, gt_inds)
 
+
 def images_to_levels(target, num_level_anchors):
-    """
-    Convert targets by image to targets by feature level.
+    """Convert targets by image to targets by feature level.
+
     [target_img0, target_img1] -> [target_level0, target_level1, ...]
     """
     target = torch.stack(target, 0)
@@ -244,8 +245,9 @@ def images_to_levels(target, num_level_anchors):
     return level_targets
 
 def levels_to_images(mlvl_tensor, flatten=False):
+
     """
-    convert targets by feature levels to targets by image level.
+    convert targets by levels to targets by feature level.
     """
     batch_size = mlvl_tensor[0].size(0)
     batch_list = [[] for _ in range(batch_size)]

@@ -251,7 +251,8 @@ def mergebypoly(srcpath, dstpath):
     srcpath: result files before merge and nms
     dstpath: result files after merge and nms
     """
-
+    # srcpath = r'/home/dingjian/evaluation_task1/result/faster-rcnn-59/comp4_test_results'
+    # dstpath = r'/home/dingjian/evaluation_task1/result/faster-rcnn-59/testtime'
 
     # mergebase(srcpath,
     #           dstpath,

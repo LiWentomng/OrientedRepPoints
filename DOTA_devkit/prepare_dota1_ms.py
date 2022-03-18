@@ -70,16 +70,18 @@ def prepare_multi_scale_data(src_path, dst_path, gap=200, subsize=1024, scales=[
         dst_test_base_path, 'test.json'), trainval=False)
     print('generate labels with coco format')
     DOTA2COCOTrain(dst_trainval_path,
-                   osp.join(dst_trainval_path, 'trainval_dota.json'),
+                   osp.join(dst_trainval_path, 'trainval_coco_8point.json'),
                    wordname_15)
     DOTA2COCOTest(dst_test_base_path,
-                  osp.join(dst_test_base_path, 'test_dota.json'),
+                  osp.join(dst_test_base_path, 'test_coco_8point.json'),
                   wordname_15)
 
 
 if __name__ == '__main__':
     # single scale
-    prepare_multi_scale_data('path/data/dota_new/',
-                             'path/data/dota_1024', scales=[1.0], gap=824)
-
+    prepare_multi_scale_data('/mnt/SSD/lwt_workdir/data/dota_new/',
+                             '/mnt/SSD/lwt_workdir/data/dota_1024', scales=[1.0], gap=824)
+    # multi scale
+    # prepare_multi_scale_data('/mnt/SSD/lwt_workdir/data/dota_new/',
+    #                          '/mnt/SSD/lwt_workdir/data/dota_1024_ms', scales=[0.5, 1.0,  1.5], gap=500)
     print('done')

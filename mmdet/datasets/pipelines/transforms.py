@@ -40,6 +40,236 @@ class ColorJitter(object):
 
 
 @PIPELINES.register_module
+class CorrectBox(object):
+    def __init__(self, correct_rbbox=True, refine_rbbox=False):
+        self.correct_rbbox = correct_rbbox
+        self.refine_rbbox = refine_rbbox
+
+    def _correct_rbbox(self, gt_rbboxes_points, refine_rbbox=False):
+        gt_bboxes_points_correct = []
+        for rbbox_points in gt_rbboxes_points:
+            rbbox_points_4x2 = rbbox_points.astype(np.int64).reshape(4, 2)
+            rbbox_xywht = cv2.minAreaRect(rbbox_points_4x2)
+            x_ctr, y_ctr, width, height, theta = rbbox_xywht[0][0], rbbox_xywht[0][1], \
+                                                 rbbox_xywht[1][0], rbbox_xywht[1][1], rbbox_xywht[2]
+            rbbox_points = cv2.boxPoints(((x_ctr, y_ctr), (width, height), theta)).reshape(-1)
+            if refine_rbbox:
+                min_dist = 1e8
+                for i, rbbox_point in enumerate(rbbox_points.reshape(4, 2)):
+                    ori_x1, ori_y1 = rbbox_points_4x2[0]
+                    cur_x1, cur_y1 = rbbox_point
+                    dist = np.sqrt((ori_x1 - cur_x1) ** 2 + (ori_y1 - cur_y1) ** 2)
+                    if dist <= min_dist:
+                        min_dist = dist
+                        index = i
+                gt_bboxes_correct = np.array([
+                    rbbox_points[2 * (index % 4)], rbbox_points[2 * (index % 4) + 1],
+                    rbbox_points[2 * ((index + 1) % 4)], rbbox_points[2 * ((index + 1) % 4) + 1],
+                    rbbox_points[2 * ((index + 2) % 4)], rbbox_points[2 * ((index + 2) % 4) + 1],
+                    rbbox_points[2 * ((index + 3) % 4)], rbbox_points[2 * ((index + 3) % 4) + 1],
+                ])
+                gt_bboxes_points_correct.append(gt_bboxes_correct)
+            else:
+                gt_bboxes_points_correct.append(rbbox_points)
+
+        return np.array(gt_bboxes_points_correct)
+
+    def __call__(self, results):
+        if self.correct_rbbox:
+            gt_rbboxes_points = results['gt_bboxes']
+            gt_rbboxes_points_correct = self._correct_rbbox(gt_rbboxes_points, self.refine_rbbox)
+            results['gt_bboxes'] = gt_rbboxes_points_correct.astype(np.float32)
+        return results
+
+@PIPELINES.register_module
+class RotateResize(object):
+    def __init__(self,
+                 img_scale=None,
+                 multiscale_mode='range',
+                 ratio_range=None,
+                 keep_ratio=True,
+                 clamp_rbbox=True):
+        self.clamp_rbbox = clamp_rbbox
+        if img_scale is None:
+            self.img_scale = None
+        else:
+            if isinstance(img_scale, list):
+                self.img_scale = img_scale
+            else:
+                self.img_scale = [img_scale]
+            assert mmcv.is_list_of(self.img_scale, tuple)
+        if ratio_range is not None:
+            # mode 1: given a scale and a range of image ratio
+            assert len(self.img_scale) == 1
+        else:
+            # mode 2: given multiple scales or a range of scales
+            assert multiscale_mode in ['value', 'range']
+        self.multiscale_mode = multiscale_mode
+        self.ratio_range = ratio_range
+        self.keep_ratio = keep_ratio
+
+    @staticmethod
+    def random_select(img_scales):
+        assert mmcv.is_list_of(img_scales, tuple)
+        scale_idx = np.random.randint(len(img_scales))
+        img_scale = img_scales[scale_idx]
+        return img_scale, scale_idx
+
+    @staticmethod
+    def random_sample(img_scales):
+        assert mmcv.is_list_of(img_scales, tuple) and len(img_scales) == 2
+        img_scale_long = [max(s) for s in img_scales]
+        # print('##############')
+        # print('img_scale_long', img_scale_long)
+        img_scale_short = [min(s) for s in img_scales]
+        # print('img_scale_short', img_scale_short)
+        long_edge = np.random.randint(
+            min(img_scale_long),
+            max(img_scale_long) + 1)
+        # print('long_edge', long_edge)
+        short_edge = np.random.randint(
+            min(img_scale_short),
+            max(img_scale_short) + 1)
+        # print('short_edge', short_edge)
+        img_scale = (long_edge, short_edge)
+        # print('img_scale', img_scale)
+        return img_scale, None
+
+    @staticmethod
+    def random_sample_ratio(img_scale, ratio_range):
+        assert isinstance(img_scale, tuple) and len(img_scale) == 2
+        min_ratio, max_ratio = ratio_range
+        assert min_ratio <= max_ratio
+        ratio = np.random.random_sample() * (max_ratio - min_ratio) + min_ratio
+        scale = int(img_scale[0] * ratio), int(img_scale[1] * ratio)
+        return scale, None
+
+    def _random_scale(self, results):
+        if self.ratio_range is not None:
+            scale, scale_idx = self.random_sample_ratio(
+                self.img_scale[0], self.ratio_range)
+        elif len(self.img_scale) == 1:
+            scale, scale_idx = self.img_scale[0], 0
+        elif self.multiscale_mode == 'range':
+            scale, scale_idx = self.random_sample(self.img_scale)
+        elif self.multiscale_mode == 'value':
+            scale, scale_idx = self.random_select(self.img_scale)
+        else:
+            raise NotImplementedError
+
+        results['scale'] = scale
+        results['scale_idx'] = scale_idx
+
+    def _resize_img(self, results):
+        if self.keep_ratio:
+            img, scale_factor = mmcv.imrescale(
+                results['img'], results['scale'], return_scale=True)
+        else:
+            img, w_scale, h_scale = mmcv.imresize(
+                results['img'], results['scale'], return_scale=True)
+            scale_factor = np.array([w_scale, h_scale, w_scale, h_scale],
+                                    dtype=np.float32)
+        results['img'] = img
+        results['img_shape'] = img.shape
+        results['pad_shape'] = img.shape  # in case that there is no padding
+        results['scale_factor'] = scale_factor
+        results['keep_ratio'] = self.keep_ratio
+
+    def _resize_bboxes(self, results, clamp_rbbox=True):
+        img_shape = results['img_shape']
+        for key in results.get('bbox_fields', []):
+            bboxes = results[key] * results['scale_factor']
+            if clamp_rbbox:
+                bboxes[:, 0::2] = np.clip(bboxes[:, 0::2], 0, img_shape[1] - 1)
+                bboxes[:, 1::2] = np.clip(bboxes[:, 1::2], 0, img_shape[0] - 1)
+            results[key] = bboxes
+    def __call__(self, results):
+        if 'scale' not in results:
+            self._random_scale(results)
+        self._resize_img(results)
+        self._resize_bboxes(results, self.clamp_rbbox)
+        return results
+
+    def __repr__(self):
+        repr_str = self.__class__.__name__
+        repr_str += ('(img_scale={}, multiscale_mode={}, ratio_range={}, '
+                     'keep_ratio={})').format(self.img_scale,
+                                              self.multiscale_mode,
+                                              self.ratio_range,
+                                              self.keep_ratio)
+        return repr_str
+
+@PIPELINES.register_module
+class RotateRandomFlip(object):
+    """Flip the image & bbox & mask.
+
+    If the input dict contains the key "flip", then the flag will be used,
+    otherwise it will be randomly decided by a ratio specified in the init
+    method.
+
+    Args:
+        flip_ratio (float, optional): The flipping probability.
+    """
+
+    def __init__(self, flip_ratio=None, direction=['horizontal']):
+        self.flip_ratio = flip_ratio
+        self.direction = direction
+#         assert isinstance(direction, list)
+        if flip_ratio is not None:
+            assert flip_ratio >= 0 and flip_ratio <= 1
+        for d in self.direction:
+            assert d in ['horizontal', 'vertical']
+#         assert direction in ['horizontal', 'vertical']
+
+    def rbbox_flip(self, rbboxes, img_shape, direction):
+        """Flip bboxes horizontally.
+
+        Args:
+            rbboxes(ndarray): shape (..., 8*k)
+            img_shape(tuple): (height, width)
+        """
+        assert rbboxes.shape[-1] % 8 == 0
+        flipped = rbboxes.copy()
+        if direction == 'horizontal':
+            w = img_shape[1]
+            flipped[..., 0::8] = w - rbboxes[..., 0::8] - 1
+            flipped[..., 2::8] = w - rbboxes[..., 2::8] - 1
+            flipped[..., 4::8] = w - rbboxes[..., 4::8] - 1
+            flipped[..., 6::8] = w - rbboxes[..., 6::8] - 1
+        elif direction == 'vertical':
+            h = img_shape[0]
+            flipped[..., 1::8] = h - rbboxes[..., 1::8] - 1
+            flipped[..., 3::8] = h - rbboxes[..., 3::8] - 1
+            flipped[..., 5::8] = h - rbboxes[..., 5::8] - 1
+            flipped[..., 7::8] = h - rbboxes[..., 7::8] - 1
+        else:
+            raise ValueError(
+                'Invalid flipping direction "{}"'.format(direction))
+        return flipped
+
+    def __call__(self, results):
+        if 'flip' not in results:
+            flip = True if np.random.rand() < self.flip_ratio else False
+            results['flip'] = flip
+        if 'flip_direction' not in results:
+            results['flip_direction'] = np.random.choice(self.direction, 1)
+#             results['flip_direction'] = self.direction
+        if results['flip']:
+            # flip image
+            results['img'] = mmcv.imflip(
+                results['img'], direction=results['flip_direction'])
+            # flip bboxes
+            for key in results.get('bbox_fields', []):
+                results[key] = self.rbbox_flip(results[key],
+                                              results['img_shape'],
+                                              results['flip_direction'])
+        return results
+
+    def __repr__(self):
+        return self.__class__.__name__ + '(flip_ratio={})'.format(
+            self.flip_ratio)
+
+@PIPELINES.register_module
 class Resize(object):
     """Resize images & bbox & mask.
 
@@ -921,7 +1151,6 @@ class Albu(object):
         repr_str = self.__class__.__name__
         repr_str += '(transforms={})'.format(self.transforms)
         return repr_str
-
 
 @PIPELINES.register_module
 class HSVAugment(object):
