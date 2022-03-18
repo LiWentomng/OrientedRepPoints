@@ -25,6 +25,8 @@ The results on DOTA test set are shown in the table below. More detailed results
  OrientedReppoints| Swin-Tiny|    | 77.30|[model](https://drive.google.com/file/d/1dXDu1xrGg2OmISOXGiJlngNKtiELMCqT/view?usp=sharing) | [log](https://drive.google.com/file/d/1XaDbaV0zbi3lwmWqTQKpelfDEmsvLv6v/view?usp=sharing)
  OrientedReppoints| Swin-Tiny| √  | 77.63|above  |above
 
+Note: The pretrained model--*swin_tiny_patch4_window7_224* of [Swin-Tiny](https://github.com/microsoft/Swin-Transformer) for pytorch1.4.0 is [here](https://drive.google.com/file/d/1ad4lxks68vngs_pCaqs9w_L-fGvtR7nQ/view?usp=sharing).
+
 The mAOE results on DOTA val set are shown in the table below.
 
   Model| Backbone | mAOE | Download
