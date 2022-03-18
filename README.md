@@ -31,7 +31,7 @@ The mAOE results on DOTA val set are shown in the table below.
  Note：Wtihout the ground-truth of test dataset, the mAOE (mean average orientation error) of orientation evaluation is calculated on the val subset(original train subset for training).
 
 # Visual results
-The visual results of learning points and the oriented bounding boxes. The visualization code is ![show_learning_points_and_boxes.py](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/show_learning_points_and_boxes.py).
+The visual results of learning points and the oriented bounding boxes. The visualization code  is ![here](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/show_learning_points_and_boxes.py).
 
 * Oriented bounding box
 
@@ -40,6 +40,8 @@ The visual results of learning points and the oriented bounding boxes. The visua
 * Learning Adaptive Points
 
 ![Learning Adative Points](https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/learning_points.png)
+
+Note: The visualization of learning points are obtained with the Point-wise Correction of Q in APAA. 
 
 
 
