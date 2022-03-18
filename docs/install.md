@@ -1,8 +1,8 @@
-# INSTAllation 
+# Installation
 ## Requirements
 * Linux
 * Python 3.7+ 
-* PyTorch or higher
+* PyTorch==1.4.0 or higher
 * CUDA 9.0 or higher
 * mmdet==1.1.0
 * ![mmcv](https://github.com/open-mmlab/mmcv)==0.6.2
