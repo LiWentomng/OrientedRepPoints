@@ -568,7 +568,7 @@ class OrientedRepPointsHead(nn.Module):
         qua_cls = qua_cls.sum(-1)
         # weight inti-stage and refine-stage
         qua = qua_cls + 0.2*(qua_loc_init + 0.3 * qua_ori_init) + 0.8 * (
-                    qua_loc_refine + 0.3 * qua_ori_refine) + pts_feats_dissimilarity
+                    qua_loc_refine + 0.3 * qua_ori_refine) + 0.1*pts_feats_dissimilarity
 
         return qua,
 
