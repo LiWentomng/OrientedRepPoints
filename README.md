@@ -4,7 +4,7 @@
 <img src="https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/overallnetwork.png" width="800px">
 
 # 
-* Based on OrientedRepPoints detector, the **2rd**  and **3rd** Places are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. **The detailed codes and introductions about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA)**.
+* Based on OrientedRepPoints detector, the **2rd**  and **3rd** Places are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. **The detailed codes and introductions about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA) and [知乎](https://zhuanlan.zhihu.com/p/422764914)**.
 
 * **Any questions and issues are welcomed!**
 
