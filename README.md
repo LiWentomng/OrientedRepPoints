@@ -1,5 +1,5 @@
 # Oriented RepPoints for Aerial Object Detection
-> Wentong Li, Yijie Chen, Kaixuan Hu, Jianke Zhu*
+> Wentong Li, Yijie Chen, Kaixuan Hu, Jianke Zhu* ([Arxiv](https://arxiv.org/pdf/2105.11111v4.pdf))
 
 <img src="https://github.com/LiWentomng/OrientedRepPoints/blob/main/docs/overallnetwork.png" width="800px">
 
