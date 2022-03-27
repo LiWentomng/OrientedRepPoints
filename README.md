@@ -17,14 +17,17 @@ This repo is based on ![mmdetection](https://github.com/open-mmlab/mmdetection).
 # Results and Models
 The results on DOTA test set are shown in the table below. More detailed results please see the paper.
 
-  Model| Backbone  |aug test| mAP | model| log
- ----  | ----- | ------  | ------| ------ | ------  
- OrientedReppoints| R-50| |75.97 |[model](https://drive.google.com/file/d/13c56u9IFRRdHH-YNmQfqb1y11f7xPfCR/view?usp=sharing) | [log](https://drive.google.com/file/d/1_lrj3gV27iM0v95AnSCRHUZDZWkdJFS_/view?usp=sharing)
- OrientedReppoints| R-101| |76.52 |[model](https://drive.google.com/file/d/1otXS3w0LVopsBKxyYbyQhF6mFDtTIJFX/view?usp=sharing) | [log]()
- OrientedReppoints| Swin-Tiny|    | 77.30|[model](https://drive.google.com/file/d/1dXDu1xrGg2OmISOXGiJlngNKtiELMCqT/view?usp=sharing) | [log](https://drive.google.com/file/d/1XaDbaV0zbi3lwmWqTQKpelfDEmsvLv6v/view?usp=sharing)
- OrientedReppoints| Swin-Tiny| √  | 77.63|above  |above
+  Model| Backbone  |scale jitter(online)|data aug(HSV+Rotation)| mAP | model| log
+ ----  | ----- | ------  | ------ |------| ------ | ------  
+ OrientedReppoints| R-50| √|  |75.97 |[model](https://drive.google.com/file/d/13c56u9IFRRdHH-YNmQfqb1y11f7xPfCR/view?usp=sharing) | [log](https://drive.google.com/file/d/1_lrj3gV27iM0v95AnSCRHUZDZWkdJFS_/view?usp=sharing)
+ OrientedReppoints| R-101|√ | |76.52 |[model](https://drive.google.com/file/d/1otXS3w0LVopsBKxyYbyQhF6mFDtTIJFX/view?usp=sharing) | [log]()
+ OrientedReppoints| Swin-Tiny| √  | √  | 78.11|[model](https://drive.google.com/file/d/1B03dBSXU9GFGRM8XiyQo2aw6yGnCgB8r/view?usp=sharing) | [log](https://drive.google.com/file/d/1lt5UkBPVM7am6asySRWohXSRK_tGwxV8/view?usp=sharing)
 
-Note: The pretrained model--*swin_tiny_patch4_window7_224* of [Swin-Tiny](https://github.com/microsoft/Swin-Transformer) for pytorch1.4.0 is [here](https://drive.google.com/file/d/1ad4lxks68vngs_pCaqs9w_L-fGvtR7nQ/view?usp=sharing).
+Note: 
+* The pretrained model--*swin_tiny_patch4_window7_224* of [Swin-Tiny](https://github.com/microsoft/Swin-Transformer) for pytorch1.4.0 is [here](https://drive.google.com/file/d/1ad4lxks68vngs_pCaqs9w_L-fGvtR7nQ/view?usp=sharing).
+* We recommend to use our demo configs with 4 GPUs.
+* The results are performed on the original DOTA images with 1024x1024 patches.
+
 
 The mAOE results on DOTA val set are shown in the table below.
 
@@ -32,7 +35,7 @@ The mAOE results on DOTA val set are shown in the table below.
  ----  | ----- | ------  | ------
  OrientedReppoints| R-50| 5.93° |[model](https://drive.google.com/file/d/1lGHehF57ObkAt0i9FITkp5yS6ULBZQjx/view?usp=sharing)
 
- Note：Orientation error evaluation (mAOE) is calculated on the val subset(train subset for training).
+ Note：Orientation error evaluation (mAOE) is calculated on the val subset(only train subset for training).
 
 # Visual results
 The visualization code for oriented bounding boxes and learning points is ![here](https://github.com/LiWentomng/OrientedRepPoints/blob/main/tools/parse_pkl/show_learning_points_and_boxes.py).
