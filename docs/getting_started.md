@@ -54,7 +54,7 @@ CUDA_VISIBLE_DEVICES=0 python toos/train.py configs/dota/orientedrepoints_r50_de
 ./tools/dist_train.sh ${CONFIG_FILE} ${GPU_NUM} [optional arguments]
 
 example:
-CUDA_VISIBLE_DEVICES=0 ./tools/dist_train.sh configs/dota/orientedrepoints_r50_demo.py 4
+CUDA_VISIBLE_DEVICES=0,1,2,3 ./tools/dist_train.sh configs/dota/orientedrepoints_r50_demo.py 4
 ```
 
 
