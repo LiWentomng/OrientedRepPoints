@@ -8,7 +8,7 @@
 
 ## Updatelog
 
-[RepPoints](https://github.com/microsoft/RepPoints) + our **APAA** can obtain **+2.5AP** (36.3 to 38.8) improvement with R-50 on **COCO** dataset.
+[RepPoints](https://github.com/microsoft/RepPoints) + our **APAA** can obtain **+2.5AP** (36.3 to 38.8) improvement with R-50 on **COCO** dataset for general detection.
 
 
 # Installation
