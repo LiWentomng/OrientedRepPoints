@@ -7,6 +7,8 @@
 * Based on OrientedRepPoints detector, the **2nd**  and **3rd** Places are achieved on the Task 2 and Task 1 respectively in the *“2021 challenge of Learning to Understand Aerial Images([LUAI](https://captain-whu.github.io/LUAI2021/tasks.html))”*. **The detailed codes and introductions about it, please refer to this [repository](https://github.com/hukaixuan19970627/OrientedRepPoints_DOTA) and [知乎](https://zhuanlan.zhihu.com/p/422764914)**.
 
 ## Update
+* **About the detailed installation, please see this [CSDN Blog](https://blog.csdn.net/SSSlasH/article/details/125255955).** (Thanks for author@SSSlasH of this blog).
+
 * The code for [MMRotate](https://github.com/open-mmlab/mmrotate) is available now.
  
 * [RepPoints](https://github.com/microsoft/RepPoints) + our **APAA** can obtain **+2.5AP** (36.3 to 38.8) improvement with R-50 on **COCO** dataset for general object detection.
